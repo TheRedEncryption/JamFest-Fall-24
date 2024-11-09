@@ -9,13 +9,15 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public float degreesPerSecond;
 
+    /* TODO: FIND OUT A WAY TO MAKE THE PLAYER COLLIDE WITH THE SURROUNDING BOXES WITHOUT AFFECTING THE BOXES
+    (AS OF CURRENTLY, THE BOXES FALL DOWN) */
+
     void Start()
     {
         playerTransform = playerObject.GetComponent<Transform>();
         rb = playerObject.GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKey(KeyCode.W))
@@ -26,12 +28,10 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.A))
         {
-            // TODO: replace with rb.MoveRotation
             playerTransform.Rotate(0, degreesPerSecond * -1 * Time.deltaTime, 0);
         }
         if (Input.GetKey(KeyCode.D))
         {
-            // TODO: replace with rb.MoveRotation
             playerTransform.Rotate(0, degreesPerSecond * Time.deltaTime, 0);
         }
     }
