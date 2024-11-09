@@ -11,8 +11,8 @@ public class PlayerController : MonoBehaviour
     public Transform currentHomePoint;
     public float slowdownRange = 4;
     public float maxRange = 5;
-    /* TODO: FIND OUT A WAY TO MAKE THE PLAYER COLLIDE WITH THE SURROUNDING BOXES WITHOUT AFFECTING THE BOXES
-    (AS OF CURRENTLY, THE BOXES FALL DOWN) */
+
+    public CameraController cameraController;
 
     void Start()
     {
@@ -32,6 +32,21 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             transform.Rotate(0, degreesPerSecond * Time.deltaTime, 0);
+        }
+
+        // All of the following are debug, the actual camera switching will probably be done in some other scipt
+
+        if (Input.GetKey(KeyCode.E))
+        {
+            cameraController.SetCamera("Cam1");
+        }
+        if (Input.GetKey(KeyCode.Q))
+        {
+            cameraController.SetCamera("Broomba Camera");
+        }
+        if (Input.GetKey(KeyCode.Alpha2))
+        {
+            cameraController.SetCamera("Cam2");
         }
     }
 
