@@ -33,20 +33,20 @@ public class PlayerController : MonoBehaviour
             transform.Rotate(0, degreesPerSecond * Time.deltaTime, 0);
         }
 
-        // All of the following are debug, the actual camera switching will probably be done in some other scipt
+        //// All of the following are debug, the actual camera switching will probably be done in some other scipt
 
-        if (Input.GetKey(KeyCode.E))
-        {
-            cameraController.SetCamera("Cam1");
-        }
-        if (Input.GetKey(KeyCode.Q))
-        {
-            cameraController.SetCamera("Broomba Camera");
-        }
-        if (Input.GetKey(KeyCode.Alpha2))
-        {
-            cameraController.SetCamera("Cam2");
-        }
+        //if (Input.GetKey(KeyCode.E))
+        //{
+        //    cameraController.SetCamera("Cam1");
+        //}
+        //if (Input.GetKey(KeyCode.Q))
+        //{
+        //    cameraController.SetCamera("Broomba Camera");
+        //}
+        //if (Input.GetKey(KeyCode.Alpha2))
+        //{
+        //    cameraController.SetCamera("Cam2");
+        //}
     }
 
     private void Move()
