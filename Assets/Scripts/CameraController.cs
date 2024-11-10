@@ -4,25 +4,32 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
 
-    [SerializeField]
-    private GameObject playerObject; // Player reference
+    /* =============== REFRENCES AND THE SUCH =============== */
 
     [SerializeField]
     private BroombaManager broombaManager; // Broomba Manager reference
 
     [SerializeField]
-    private List<Camera> cameraList = new(); // List of all Cameras present in the game
+    private GameObject CamContainer;
+
+    private List<Camera> cameraList = new(); // List of all security cameras present in the game
+
+    /* =============== STATE VARIABLES =============== */
+
+    public bool ViewingBroombaCam { get; private set; }
+
+    private int currentCameraIndex = 0;
 
     void Start()
     {
         // Takes all the Camera objects in the game and puts them in this list
-        cameraList.AddRange(FindObjectsByType<Camera>(FindObjectsSortMode.None));
+        cameraList.AddRange(CamContainer.GetComponentsInChildren<Camera>());
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.white;
-        Gizmos.DrawLine(playerObject.GetComponent<Transform>().position, Camera.main.GetComponent<Transform>().position);
+        Gizmos.DrawLine(broombaManager.GetActiveBroomba().GetComponent<Transform>().position, Camera.main.GetComponent<Transform>().position);
     }
 
     // Takes in the name of the camera and enables only that camera
@@ -31,33 +38,66 @@ public class CameraController : MonoBehaviour
         foreach (Camera camera in cameraList)
         {
             bool camEquivalent = camera.name.Equals(name);
-            Debug.Log(camera.name + "? " + camEquivalent);
             camera.enabled = camEquivalent;
             camera.tag = camEquivalent ? "MainCamera" : "Untagged";
             camera.gameObject.GetComponent<AudioListener>().enabled = camEquivalent;
         }
     }
 
-    // Takes a camera and enables only that camera (marked for deletion)
-    // public void SetCamera(Camera otherCamera)
-    // {
-    //     foreach (Camera camera in cameraList)
-    //     {
-    //         Debug.Log(camera.name + "? " + camera.Equals(otherCamera));
-    //         camera.enabled = camera.Equals(otherCamera);
-    //         camera.tag = camera.Equals(otherCamera) ? "MainCamera" : "Untagged";
-    //         GetEligibleCameras();
-    //     }
-    // }
-
-    // note that if a camera becomes ineligible due to whatever reason, and it is still active,
-    // then display static until player chooses an eligible camera
-    // i anticipate that this function might be on the costlier side, so
-    // run it only when player clicks to change view
-    List<Camera> GetEligibleCameras()
+    // Takes a camera and enables only that camera
+    public void SetCamera(Camera otherCamera)
     {
-        // TODO: get a list of eligible cameras (current broomba + cameras in range(?) of current broomba)
-        return null;
+        foreach (Camera camera in cameraList)
+        {
+            camera.enabled = false;
+            camera.tag = "Untagged";
+        }
+
+        otherCamera.enabled = true;
+        otherCamera.tag = "MainCamera";
+    }
+
+    public Camera GetActiveBroombaCamera()
+    {
+        return broombaManager.GetActiveBroomba().GetComponentInChildren<Camera>();
+    }
+
+    public void BroombaView()
+    {
+        SetCamera(GetActiveBroombaCamera());
+    }
+
+    public void CameraView()
+    {
+        SetCamera(cameraList[currentCameraIndex]);
+    }
+
+    public void CycleCameraForwards()
+    {
+        if (currentCameraIndex == cameraList.Count - 1)
+        {
+            currentCameraIndex = 0;
+        }
+        else
+        {
+            currentCameraIndex++;
+        }
+
+        SetCamera(cameraList[currentCameraIndex]);
+    }
+
+    public void CycleCameraBackwards()
+    {
+        if (currentCameraIndex == 0)
+        {
+            currentCameraIndex = cameraList.Count - 1;
+        }
+        else
+        {
+            currentCameraIndex--;
+        }
+
+        SetCamera(cameraList[currentCameraIndex]);
     }
 
 }
