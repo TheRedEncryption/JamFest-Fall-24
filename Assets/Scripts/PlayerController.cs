@@ -7,9 +7,7 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public float degreesPerSecond;
 
-    public Transform currentHomePoint;
-    public float slowdownRange = 4;
-    public float maxRange = 5;
+    public BroombaHomePoint currentHomePoint;
 
     public CameraController cameraController;
 
@@ -57,43 +55,24 @@ public class PlayerController : MonoBehaviour
 
         if (currentHomePoint != null)
         {
-            float dist = XZDist(transform.position, currentHomePoint.position);
-            if (dist > slowdownRange)
-            {
-                float strength = ((dist - slowdownRange) / (maxRange - slowdownRange));
-                Vector3 distanceInfluence = XZVec(currentHomePoint.position - transform.position).normalized * speed * strength;
 
-                finalMovement += distanceInfluence;
-            }
+            finalMovement += currentHomePoint.GetInfluence(transform.position) * speed;
+            
         }
         rb.MovePosition(finalMovement * Time.deltaTime + transform.position);
     }
 
-    private void OnDrawGizmos()
-    {
-        if (currentHomePoint == null) return;
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(currentHomePoint.position, slowdownRange);
+    //private void OnDrawGizmos()
+    //{
 
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(currentHomePoint.position, maxRange);
+    //    float dist = Utils.XZDist(transform.position, currentHomePoint.position);
 
-        float dist = XZDist(transform.position, currentHomePoint.position);
+    //    float strength = ((dist - slowdownRange) / (maxRange - slowdownRange));
+    //    Vector3 distanceInfluence = (transform.position - currentHomePoint.position).XZVec().normalized * speed * strength;
+    //    Gizmos.DrawLine(transform.position, transform.position + distanceInfluence);
 
-        float strength = ((dist - slowdownRange) / (maxRange - slowdownRange));
-        Vector3 distanceInfluence = XZVec(transform.position - currentHomePoint.position).normalized * speed * strength;
-        Gizmos.DrawLine(transform.position, transform.position + distanceInfluence);
+    //}
 
-    }
 
-    public static Vector3 XZVec(Vector3 v)
-    {
-        return new Vector3(v.x, 0, v.z);
-    }
-
-    public static float XZDist(Vector3 v1, Vector3 v2)
-    {
-        return Vector3.Distance(XZVec(v1), XZVec(v2));
-    }
 
 }
