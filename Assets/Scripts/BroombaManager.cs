@@ -26,6 +26,7 @@ public class BroombaManager : MonoBehaviour
         if (currentlyActiveBroomba != null)
         {
             SetActiveBroomba(currentlyActiveBroomba);
+            SwitchCameraButton.SetCamera(currentlyActiveBroomba.GetComponentInChildren<Camera>());
         }
     }
 
