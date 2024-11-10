@@ -1,14 +1,18 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BroombaManager : MonoBehaviour
 {
-    void Start()
-    {
-        //
-    }
+
+    [SerializeField]
+    List<GameObject> broombaList;
 
     public void SetActiveBroomba(string name)
     {
-        // TODO: Set active Broomba
+        foreach (GameObject broomba in broombaList)
+        {
+            Debug.Log(broomba.name + "? " + broomba.name.Equals(name));
+            broomba.tag = broomba.name.Equals(name) ? "Player" : "Untagged";
+        }
     }
 }
