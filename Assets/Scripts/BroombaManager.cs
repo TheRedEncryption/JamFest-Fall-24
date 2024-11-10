@@ -26,7 +26,6 @@ public class BroombaManager : MonoBehaviour
         if (currentlyActiveBroomba != null)
         {
             SetActiveBroomba(currentlyActiveBroomba);
-            SwitchCameraButton.SetCamera(currentlyActiveBroomba.GetComponentInChildren<Camera>());
         }
     }
 
@@ -38,6 +37,7 @@ public class BroombaManager : MonoBehaviour
         }
         broomba.tag = "Player";
         currentlyActiveBroomba = broomba;
+         SwitchCameraButton.SetCamera(currentlyActiveBroomba.GetComponentInChildren<Camera>());
        
         
     }
@@ -70,6 +70,7 @@ public class BroombaManager : MonoBehaviour
         {
             SetActiveBroomba(newBroomba);
         }
+
     }
 
     private void OnDrawGizmos()
