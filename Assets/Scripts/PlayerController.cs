@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -84,6 +83,7 @@ public class PlayerController : MonoBehaviour
         float strength = ((dist - slowdownRange) / (maxRange - slowdownRange));
         Vector3 distanceInfluence = XZVec(transform.position - currentHomePoint.position).normalized * speed * strength;
         Gizmos.DrawLine(transform.position, transform.position + distanceInfluence);
+
     }
 
     public static Vector3 XZVec(Vector3 v)
