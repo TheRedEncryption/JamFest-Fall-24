@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BroombaManager : MonoBehaviour
 {
-
+    public static BroombaManager instance;
     [SerializeField]
     private GameObject currentlyActiveBroomba;
 
@@ -13,28 +13,32 @@ public class BroombaManager : MonoBehaviour
     [SerializeField]
     private float hackDistance = 1.5f;
 
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
+
     void Start()
     {
         if (currentlyActiveBroomba != null)
         {
-            SetActiveBroomba(currentlyActiveBroomba.name);
+            SetActiveBroomba(currentlyActiveBroomba);
         }
     }
 
-    public void SetActiveBroomba(string name)
+    public void SetActiveBroomba(GameObject broomba)
     {
-        foreach (GameObject broomba in broombaList)
+        if(currentlyActiveBroomba != null)
         {
-            bool equivalent = broomba.name.Equals(name);
-
-            Debug.Log(broomba.name + "? " + equivalent);
-            broomba.tag = equivalent ? "Player" : "Untagged";
-
-            if (equivalent)
-            {
-                currentlyActiveBroomba = broomba;
-            }
+            currentlyActiveBroomba.tag = "Untagged";
         }
+        broomba.tag = "Player";
+        currentlyActiveBroomba = broomba;
+       
+        
     }
 
     public GameObject GetActiveBroomba()
@@ -63,7 +67,7 @@ public class BroombaManager : MonoBehaviour
 
         if (minDistance <= hackDistance)
         {
-            SetActiveBroomba(newBroomba.name);
+            SetActiveBroomba(newBroomba);
         }
     }
 
