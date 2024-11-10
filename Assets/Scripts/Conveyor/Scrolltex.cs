@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class scrolling : MonoBehaviour {
+public class Scrolling : MonoBehaviour {
 
     public float ScrollX = 0.5f;
     public float ScrollY = 0.5f;

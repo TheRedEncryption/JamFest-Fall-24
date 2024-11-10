@@ -6,8 +6,10 @@ public class ConveyorBelt : MonoBehaviour
 {
 
     public float travelSpeed = 1.0f;
+    public float spriteSpeed = 0.2f;
     private float dir = 1;
     private List<GameObject> onBelt;
+    private Scrolling scrolling;
 
     private bool IsVertical => Mathf.Abs(Vector3.Dot(transform.up.normalized, Vector3.forward)) < 0.5;
 
@@ -21,6 +23,7 @@ public class ConveyorBelt : MonoBehaviour
     void Start()
     {
         onBelt = new List<GameObject>();
+        scrolling = GetComponent<Scrolling>();
     }
 
     // Fixed update for physics
@@ -32,23 +35,24 @@ public class ConveyorBelt : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.W))
             {
-                dir = 1;
+                dir = -1;
             }
             else if (Input.GetKey(KeyCode.S))
             {
-                dir = -1;
+                dir = 1;
             }
         } else
         {
             if (Input.GetKey(KeyCode.A))
             {
-                dir = 1;
+                dir = -1;
             }
             else if (Input.GetKey(KeyCode.D))
             {
-                dir = -1;
+                dir = 1;
             }
         }
+        scrolling.ScrollY = dir * travelSpeed * spriteSpeed;
                 // For every item on the belt, add force to it in the direction given
         for (int i = 0; i <= onBelt.Count - 1; i++)
         {
