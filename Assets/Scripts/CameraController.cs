@@ -30,23 +30,25 @@ public class CameraController : MonoBehaviour
     {
         foreach (Camera camera in cameraList)
         {
-            Debug.Log(camera.name + "? " + camera.name.Equals(name));
-            camera.enabled = camera.name.Equals(name);
-            camera.tag = camera.name.Equals(name) ? "MainCamera" : "Untagged";
+            bool camEquivalent = camera.name.Equals(name);
+            Debug.Log(camera.name + "? " + camEquivalent);
+            camera.enabled = camEquivalent;
+            camera.tag = camEquivalent ? "MainCamera" : "Untagged";
+            camera.gameObject.GetComponent<AudioListener>().enabled = camEquivalent;
         }
     }
 
-    // Takes a camera and enables only that camera
-    public void SetCamera(Camera otherCamera)
-    {
-        foreach (Camera camera in cameraList)
-        {
-            Debug.Log(camera.name + "? " + camera.Equals(otherCamera));
-            camera.enabled = camera.Equals(otherCamera);
-            camera.tag = camera.Equals(otherCamera) ? "MainCamera" : "Untagged";
-            GetEligibleCameras();
-        }
-    }
+    // Takes a camera and enables only that camera (marked for deletion)
+    // public void SetCamera(Camera otherCamera)
+    // {
+    //     foreach (Camera camera in cameraList)
+    //     {
+    //         Debug.Log(camera.name + "? " + camera.Equals(otherCamera));
+    //         camera.enabled = camera.Equals(otherCamera);
+    //         camera.tag = camera.Equals(otherCamera) ? "MainCamera" : "Untagged";
+    //         GetEligibleCameras();
+    //     }
+    // }
 
     // note that if a camera becomes ineligible due to whatever reason, and it is still active,
     // then display static until player chooses an eligible camera
