@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
 
     public BroombaHomePoint currentHomePoint;
 
-    public CameraController cameraController;
 
     void Start()
     {
