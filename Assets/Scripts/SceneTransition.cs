@@ -5,6 +5,7 @@ using UnityEngine.Audio;
 using UnityEngine.Timeline;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
 public class SceneTransition : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -12,7 +13,7 @@ public class SceneTransition : MonoBehaviour
     public float fadeDuration;
     public Image screenTransition;
     public Vector3 locationOnLoad;
-
+    public UnityEvent onExit;
     void Start()
     {
         //screenTransition = GameObject.FindWithTag("ScreenTransition").GetComponent<Image>();
@@ -58,6 +59,7 @@ public class SceneTransition : MonoBehaviour
         }
         screenTransition.color = targetColor;
         // screenTransition.gameObject.SetActive(false);// Ensure final color is set correctly
+        onExit?.Invoke();
         SceneManager.LoadScene(sceneName);
     }
 }
