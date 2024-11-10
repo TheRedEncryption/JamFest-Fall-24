@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (!CompareTag("Player")) return;
+
         if (Input.GetKey(KeyCode.W))
         {
             Move();
