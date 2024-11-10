@@ -65,13 +65,58 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: f4df1186fa30e0f41995dde7b0f77730, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6487753051008720414}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f4df1186fa30e0f41995dde7b0f77730, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7742946433374302832}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f4df1186fa30e0f41995dde7b0f77730, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1031352892291100632}
   m_SourcePrefab: {fileID: 100100000, guid: f4df1186fa30e0f41995dde7b0f77730, type: 3}
 --- !u!4 &5061335128870493981 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f4df1186fa30e0f41995dde7b0f77730, type: 3}
   m_PrefabInstance: {fileID: 4735464668212328694}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5581835530518676903 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f4df1186fa30e0f41995dde7b0f77730, type: 3}
+  m_PrefabInstance: {fileID: 4735464668212328694}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &7742946433374302832
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5581835530518676903}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 0.9999002, z: 0.20000005}
+  m_Center: {x: 0, y: 0, z: 0.100000024}
+--- !u!114 &1031352892291100632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5581835530518676903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c46bbb1bf7b59764e8c8f5f998fb77ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  travelSpeed: 1
 --- !u!1001 &5588248603006852052
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -148,7 +193,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 0eff44c9120299646ae3aea66620dffd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.031570435
+      value: -0.014
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0eff44c9120299646ae3aea66620dffd, type: 3}
       propertyPath: m_LocalPosition.y
