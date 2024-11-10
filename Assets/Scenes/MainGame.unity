@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerObject: {fileID: 81502807}
+  broombaManager: {fileID: 96158641}
   cameraList: []
 --- !u!4 &61027471
 Transform:
@@ -351,6 +352,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 922d01588124a3a478f62fdaffe0d016, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentlyActiveBroomba: {fileID: 81502807}
+  broombaList:
+  - {fileID: 81502807}
+  - {fileID: 150922736}
 --- !u!4 &96158642
 Transform:
   m_ObjectHideFlags: 0
@@ -601,7 +606,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 342591248}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -753,7 +758,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 458365969}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -1284,7 +1289,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 732484011}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}

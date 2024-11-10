@@ -7,6 +7,10 @@ public class CameraController : MonoBehaviour
 
     [SerializeField]
     private GameObject playerObject; // Player reference
+
+    [SerializeField]
+    private BroombaManager broombaManager; // Broomba Manager reference
+
     [SerializeField]
     private List<Camera> cameraList = new(); // List of all Cameras present in the game
 
@@ -31,6 +35,28 @@ public class CameraController : MonoBehaviour
             camera.enabled = camera.name.Equals(name);
             camera.tag = camera.name.Equals(name) ? "MainCamera" : "Untagged";
         }
+    }
+
+    // Takes a camera and enables only that camera
+    public void SetCamera(Camera otherCamera)
+    {
+        foreach (Camera camera in cameraList)
+        {
+            Debug.Log(camera.name + "? " + camera.Equals(otherCamera));
+            camera.enabled = camera.Equals(otherCamera);
+            camera.tag = camera.Equals(otherCamera) ? "MainCamera" : "Untagged";
+            GetEligibleCameras();
+        }
+    }
+
+    // note that if a camera becomes ineligible due to whatever reason, and it is still active,
+    // then display static until player chooses an eligible camera
+    // i anticipate that this function might be on the costlier side, so
+    // run it only when player clicks to change view
+    List<Camera> GetEligibleCameras()
+    {
+        // TODO: get a list of eligible cameras (current broomba + cameras in range(?) of current broomba)
+        return null;
     }
 
 }
