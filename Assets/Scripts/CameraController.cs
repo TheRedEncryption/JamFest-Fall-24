@@ -65,11 +65,13 @@ public class CameraController : MonoBehaviour
     public void BroombaView()
     {
         SetCamera(GetActiveBroombaCamera());
+        ViewingBroombaCam = true;
     }
 
     public void CameraView()
     {
         SetCamera(cameraList[currentCameraIndex]);
+        ViewingBroombaCam = false;
     }
 
     public void CycleCameraForwards()
@@ -99,5 +101,13 @@ public class CameraController : MonoBehaviour
 
         SetCamera(cameraList[currentCameraIndex]);
     }
+
+    /*
+    
+    the entire idea is that there are two modes, broomba view and camera view. if you hack a broomba while in broomba view (check using ViewingBroombaCam)
+    then the camera changes otherwise if you are watching through a security camera, then stay the same. when in broomba view then the arrows to switch cameras
+    should not appear, otherwise when in security camera view then the arrows will appear
+    
+    */
 
 }
