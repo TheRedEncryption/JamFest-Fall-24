@@ -1,63 +1,46 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class CameraController : MonoBehaviour
 {
 
-    [SerializeField]
-    private GameObject playerObject; // Player reference
+    /* =============== REFRENCES AND THE SUCH =============== */
 
-    [SerializeField]
-    private BroombaManager broombaManager; // Broomba Manager reference
+    public static CameraController instance;
+    public GameObject cameraContainer;
 
-    [SerializeField]
-    private List<Camera> cameraList = new(); // List of all Cameras present in the game
+    private List<SwitchCameraButton> buttonList = new();
+
+    /* =============== STATE VARIABLES =============== */
+
+
+    private int currentCameraIndex = 0;
+
+    private void Awake()
+    {
+        if (instance == null) { instance = this; }
+    }
 
     void Start()
     {
-        // Takes all the Camera objects in the game and puts them in this list
-        cameraList.AddRange(FindObjectsByType<Camera>(FindObjectsSortMode.None));
+        
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.white;
-        Gizmos.DrawLine(playerObject.GetComponent<Transform>().position, Camera.main.GetComponent<Transform>().position);
+        Gizmos.DrawLine(BroombaManager.instance.GetActiveBroomba().GetComponent<Transform>().position, Camera.main.GetComponent<Transform>().position);
     }
 
     // Takes in the name of the camera and enables only that camera
-    public void SetCamera(string name)
+    public void SetCamera(Camera newCam)
     {
-        foreach (Camera camera in cameraList)
-        {
-            bool camEquivalent = camera.name.Equals(name);
-            Debug.Log(camera.name + "? " + camEquivalent);
-            camera.enabled = camEquivalent;
-            camera.tag = camEquivalent ? "MainCamera" : "Untagged";
-            camera.gameObject.GetComponent<AudioListener>().enabled = camEquivalent;
-        }
+        Camera oldCam = Camera.main;
+        oldCam.enabled = false;
+        newCam.enabled = true;
+
+        
     }
-
-    // Takes a camera and enables only that camera (marked for deletion)
-    // public void SetCamera(Camera otherCamera)
-    // {
-    //     foreach (Camera camera in cameraList)
-    //     {
-    //         Debug.Log(camera.name + "? " + camera.Equals(otherCamera));
-    //         camera.enabled = camera.Equals(otherCamera);
-    //         camera.tag = camera.Equals(otherCamera) ? "MainCamera" : "Untagged";
-    //         GetEligibleCameras();
-    //     }
-    // }
-
-    // note that if a camera becomes ineligible due to whatever reason, and it is still active,
-    // then display static until player chooses an eligible camera
-    // i anticipate that this function might be on the costlier side, so
-    // run it only when player clicks to change view
-    List<Camera> GetEligibleCameras()
-    {
-        // TODO: get a list of eligible cameras (current broomba + cameras in range(?) of current broomba)
-        return null;
-    }
-
 }
