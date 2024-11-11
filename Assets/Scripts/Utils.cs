@@ -11,4 +11,10 @@ public static class Utils
     {
         return Vector3.Distance(XZVec(v1), XZVec(v2));
     }
+    public static Color WithAlpha(this Color c, float alpha)
+    {
+        c.a = alpha;
+        return c;
+
+    }
 }

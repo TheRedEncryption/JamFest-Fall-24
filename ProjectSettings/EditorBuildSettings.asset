@@ -23,6 +23,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ManagerOffice.unity
     guid: 63456472d54b965428bc58ccd9fcab30
+  - enabled: 1
+    path: Assets/Scenes/ConveyorBelts.unity
+    guid: bfa1b5efa22c8ec418f6e0d154357677
+  - enabled: 1
+    path: Assets/Scenes/DroneScene.unity
+    guid: 58b705422fd1c1a4bb39b61c534c62aa
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
