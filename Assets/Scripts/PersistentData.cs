@@ -7,12 +7,13 @@ public class PersistentData
 {
 
     public static bool SeenCode = false;
-    public static List<Vector3> broombaLocations;
-
+    public static Vector3[] broombaLocations;
+    public static string lastbroomba = null;
     public static void Reset()
     {
         SeenCode = false;
-        broombaLocations = new List<Vector3>();
+        broombaLocations = null;
+        lastbroomba = null;
     }
 
 }

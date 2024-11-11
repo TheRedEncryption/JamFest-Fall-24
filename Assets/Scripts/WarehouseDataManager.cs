@@ -8,26 +8,37 @@ public class WarehouseDataManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (PersistentData.SeenCode)
+        if (!PersistentData.SeenCode)
         {
             cameraSelector.SetActive(false);
         }
+        else
+        {
+            BroombaManager.instance.SetActiveBroomba(GameObject.Find(PersistentData.lastbroomba));
 
-        if (PersistentData.broombaLocations.Count > 0)
+        if (PersistentData.broombaLocations != null)
         {
             for (int i = 0; i < broombas.Length; i++)
             {
                 broombas[i].transform.position = PersistentData.broombaLocations[i];
             }
         }
+        }
+
+       
+        print("seen " + PersistentData.SeenCode);
+        print("broombas " + PersistentData.broombaLocations?.Length);
     }
 
     public void OnExit()
     {
-        PersistentData.broombaLocations = new List<Vector3>();
-        foreach (GameObject go in broombas)
+
+        PersistentData.broombaLocations = new Vector3[broombas.Length];
+        PersistentData.lastbroomba = BroombaManager.instance.GetActiveBroomba().name;
+        BroombaManager.instance.GetActiveBroomba().transform.position += new Vector3(2, 0, 0);
+        for(int i = 0;i < broombas.Length;i++)
         {
-            PersistentData.broombaLocations.Add(go.transform.position);
+            PersistentData.broombaLocations[i] = broombas[i].transform.position;
         }
     }
 }
