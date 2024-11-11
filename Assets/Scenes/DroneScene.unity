@@ -1586,6 +1586,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Drone REAL
       objectReference: {fileID: 0}
+    - target: {fileID: 3194382030406214003, guid: 4d2515fc58b95294bb499c004b487dd6, type: 3}
+      propertyPath: audioObject
+      value: 
+      objectReference: {fileID: 128331119}
     - target: {fileID: 7162332101302694293, guid: 4d2515fc58b95294bb499c004b487dd6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 500.43
