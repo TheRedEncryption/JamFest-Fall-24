@@ -19,6 +19,7 @@ public class MainMenuHandler : MonoBehaviour
     }
     public void startGame()
     {
+        PersistentData.Reset();
         StartCoroutine(FadeToBlack(initialScene));
     }
 
