@@ -41,6 +41,7 @@ public class PauseMenuHandler : MonoBehaviour
     public void Reset()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1.0f;
     }
 
     public void ExitButton()
