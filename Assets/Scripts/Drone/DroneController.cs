@@ -13,6 +13,7 @@ public class DroneController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         propellers = transform.Find("Drone Propellers");
+        
     }
 
     private void Update()
@@ -29,7 +30,9 @@ public class DroneController : MonoBehaviour
         {
             speed = Mathf.Clamp(speed - accel * Time.fixedDeltaTime, 0, maxSpeed);
         }
+
         Vector3 tilt = Vector3.zero;
+        tilt.y = transform.rotation.y;
 
         //tilt
         if (Input.GetKey(KeyCode.W))
