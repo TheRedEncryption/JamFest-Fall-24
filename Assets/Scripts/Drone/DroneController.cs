@@ -8,13 +8,14 @@ public class DroneController : MonoBehaviour
     public float maxTilt = 15f;
     private float speed = 0;
     Transform propellers;
-    public AudioSource audioSource;
+    public GameObject audioObject;
+    AudioSource audioSource;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         propellers = transform.Find("Drone Propellers");
-        
+        audioSource = audioObject.GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -27,7 +28,6 @@ public class DroneController : MonoBehaviour
         if (Input.GetKey(KeyCode.Q))
         {
             speed = Mathf.Clamp(speed + accel*Time.fixedDeltaTime, 0, maxSpeed);
-            audioSource.Play();
         } else if (Input.GetKey(KeyCode.E))
         {
             speed = Mathf.Clamp(speed - accel * Time.fixedDeltaTime, 0, maxSpeed);
@@ -55,6 +55,15 @@ public class DroneController : MonoBehaviour
         }
 
         rb.MoveRotation(Quaternion.Euler(tilt));
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            audioSource.Play();
+        }
+        if (Input.GetKeyUp(KeyCode.Q))
+        {
+            audioSource.Stop();
+        }
 
         //move up(local)
         Vector3 tiltedUp = rb.transform.up;

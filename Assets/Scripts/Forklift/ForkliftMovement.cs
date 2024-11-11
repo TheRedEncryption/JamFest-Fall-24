@@ -10,8 +10,7 @@ public class ForkliftMovement : MonoBehaviour
 
     private Rigidbody rb;
     private Transform fork;
-    private float forkMinHeight;
-
+    private float currentHeight;
 
 
     private Vector3 forward => Vector3.up; //remap due to mesh rotation
@@ -22,17 +21,24 @@ public class ForkliftMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         fork = transform.Find("Body").Find("Fork").transform;
-        forkMinHeight = fork.position.y;
+        currentHeight = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (tag != "Player") return;
+        HandleMove();
+    }
+
+    void HandleMove()
+    {
         Vector3 linearMovement = Vector3.zero;
         if (Input.GetKey(KeyCode.W))
         {
             linearMovement = transform.forward;
-        } else if (Input.GetKey(KeyCode.S))
+        }
+        else if (Input.GetKey(KeyCode.S))
         {
             linearMovement = -transform.forward;
         }
@@ -50,22 +56,31 @@ public class ForkliftMovement : MonoBehaviour
         float forkMovement = 0;
         if (Input.GetKey(KeyCode.Q))
         {
-            if (fork.position.y < forkMinHeight + forkHeight)
+            if (currentHeight < forkHeight)
             {
                 forkMovement = 1;
+                if(currentHeight <= 0.1)
+                {
+                    if (Physics.Raycast(fork.position, Vector3.up, out var collision, 1))
+                    {
+                        collision.rigidbody.transform.SetParent(fork.transform, false);
+                    }
+                }
+
             }
 
         }
         else if (Input.GetKey(KeyCode.E))
         {
-            if (fork.position.y > forkMinHeight)
+            if (currentHeight > 0)
             {
                 forkMovement = -1;
 
             }
         }
-            fork.Translate(transform.up * forkMovement * forkSpeed * Time.deltaTime, transform);
-        rb.MovePosition(transform.position + linearMovement *speed *Time.deltaTime);
+        fork.Translate(transform.up * forkMovement * forkSpeed * Time.deltaTime, transform);
+        currentHeight += forkMovement * forkSpeed * Time.deltaTime;
+        rb.MovePosition(transform.position + linearMovement * speed * Time.deltaTime);
         Quaternion totationAsQuat = Quaternion.Euler(0, rotation * turningSpeed * Time.deltaTime, 0);
         rb.MoveRotation(transform.rotation * totationAsQuat);
     }
