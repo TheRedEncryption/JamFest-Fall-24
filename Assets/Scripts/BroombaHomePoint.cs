@@ -20,7 +20,7 @@ public class BroombaHomePoint : MonoBehaviour
     void Update()
     {
         BroombaManager manager = GameObject.Find("BroombaManager").GetComponent<BroombaManager>();
-        if (manager == null || manager.GetActiveBroomba() == null || manager.GetActiveBroomba().GetComponent<PlayerController>().currentHomePoint != this) {
+        if (manager == null || manager.GetActiveBroomba() == null || manager.GetActiveBroomba().GetComponent<PlayerController>() == null||manager.GetActiveBroomba().GetComponent<PlayerController>().currentHomePoint != this) {
             mat.color = mat.color.WithAlpha(0);
             return;
         }
