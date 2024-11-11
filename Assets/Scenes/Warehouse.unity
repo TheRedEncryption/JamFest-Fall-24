@@ -6652,6 +6652,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 172813148}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 7e4546f4290957548b77cc2c3b7cc30f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.3606
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7e4546f4290957548b77cc2c3b7cc30f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.3606
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7e4546f4290957548b77cc2c3b7cc30f, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.3606
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7e4546f4290957548b77cc2c3b7cc30f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.009874582
       objectReference: {fileID: 0}
@@ -34483,10 +34495,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Forklift
       objectReference: {fileID: 0}
-    - target: {fileID: 5925854081211111092, guid: c5c9fccc39ed3f04dbf55b50f8ac4690, type: 3}
-      propertyPath: m_Constraints
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -48617,7 +48625,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 50f19b40735663840958a88fcb89de86, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.286
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 50f19b40735663840958a88fcb89de86, type: 3}
       propertyPath: m_LocalPosition.z
