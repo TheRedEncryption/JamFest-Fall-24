@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WarehouseDataManager : MonoBehaviour
 {
@@ -29,7 +30,13 @@ public class WarehouseDataManager : MonoBehaviour
         print("seen " + PersistentData.SeenCode);
         print("broombas " + PersistentData.broombaLocations?.Length);
     }
-
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Backslash))
+        {
+            SceneManager.LoadScene("ConveyorBelts");
+        }
+    }
     public void OnExit()
     {
 
