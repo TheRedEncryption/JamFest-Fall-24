@@ -373,7 +373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3570418c3e20c94aa6b4ae6f170a196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialScene: MainGame
+  initialScene: Warehouse
   fadeDuration: 1.5
   screenTransition: {fileID: 6498402}
   music: {fileID: -6097166672817806410, guid: 65ecd47102417e44bb4ffa050a4cf88d, type: 2}
