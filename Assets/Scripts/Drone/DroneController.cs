@@ -8,6 +8,7 @@ public class DroneController : MonoBehaviour
     public float maxTilt = 15f;
     private float speed = 0;
     Transform propellers;
+    public AudioSource audioSource;
 
     void Start()
     {
@@ -25,6 +26,7 @@ public class DroneController : MonoBehaviour
         if (Input.GetKey(KeyCode.Q))
         {
             speed = Mathf.Clamp(speed + accel*Time.fixedDeltaTime, 0, maxSpeed);
+            audioSource.Play();
         } else if (Input.GetKey(KeyCode.E))
         {
             speed = Mathf.Clamp(speed - accel * Time.fixedDeltaTime, 0, maxSpeed);
