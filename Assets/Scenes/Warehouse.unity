@@ -32217,7 +32217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 922d01588124a3a478f62fdaffe0d016, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentlyActiveBroomba: {fileID: 1747797673}
+  currentlyActiveBroomba: {fileID: 835730397}
   broombaList:
   - {fileID: 835730397}
   - {fileID: 1117519861}
@@ -34340,7 +34340,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5111881328830558368, guid: c5c9fccc39ed3f04dbf55b50f8ac4690, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5111881328830558368, guid: c5c9fccc39ed3f04dbf55b50f8ac4690, type: 3}
       propertyPath: m_LocalPosition.z
@@ -48117,7 +48117,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 167442839133623916, guid: 3cc95d9ef63f0d64ea005ee40821444a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -35.38
+      value: -34.5
       objectReference: {fileID: 0}
     - target: {fileID: 167442839133623916, guid: 3cc95d9ef63f0d64ea005ee40821444a, type: 3}
       propertyPath: m_LocalRotation.w
