@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class WarehouseDataManager : MonoBehaviour
 {
     public GameObject[] broombas;
     public GameObject cameraSelector;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -39,7 +41,6 @@ public class WarehouseDataManager : MonoBehaviour
     }
     public void OnExit()
     {
-
         PersistentData.broombaLocations = new Vector3[broombas.Length];
         PersistentData.lastbroomba = BroombaManager.instance.GetActiveBroomba().name;
         BroombaManager.instance.GetActiveBroomba().transform.position += new Vector3(2, 0, 0);

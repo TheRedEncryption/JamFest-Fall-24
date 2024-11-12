@@ -8,11 +8,14 @@ public class VictoryScreen : MonoBehaviour
     public string newScene;
     public float fadeDuration;
     public float fadeDuration2;
+
     public Image HoorayText;
     public Image VictoryImage;
     public Image screenTransition;
+    public Image TutorialText;
     public GameObject ThankYouText;
     public GameObject MenuButton;
+    public AudioSource winMusic;
     bool startedWin = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -31,6 +34,7 @@ public class VictoryScreen : MonoBehaviour
         if(!startedWin)
         {
             startedWin = true;
+            StartCoroutine(FadeTutorialOut());
             StartCoroutine(FadeHoorayIn());
         }
         
@@ -41,7 +45,27 @@ public class VictoryScreen : MonoBehaviour
         StartCoroutine(FadeToBlack(newScene));
     }
 
-    IEnumerator FadeHoorayIn()
+    IEnumerator FadeTutorialOut()
+    {
+        HoorayText.gameObject.SetActive(true);
+        // Fade from transparent to black
+        Time.timeScale = 1f;
+        float elapsedTime = 0f;
+        Debug.Log(elapsedTime);
+        Color startColor = TutorialText.color;
+        Color targetColor = new Color(startColor.r, startColor.g, startColor.b, 0f); // Set alpha to 1 for black
+        while (elapsedTime < fadeDuration2)
+        {
+            TutorialText.color = Color.Lerp(startColor, targetColor, elapsedTime / fadeDuration2);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        TutorialText.color = targetColor;
+        TutorialText.gameObject.SetActive(false);
+        //StartCoroutine(FadeChibiIn());
+    }
+
+        IEnumerator FadeHoorayIn()
     {
         HoorayText.gameObject.SetActive(true);
         // Fade from transparent to black
@@ -58,6 +82,7 @@ public class VictoryScreen : MonoBehaviour
         }
         HoorayText.color = targetColor;
         StartCoroutine(FadeChibiIn());
+        winMusic.Play();
         // screenTransition.gameObject.SetActive(false);// Ensure final color is set correctly
     }
 

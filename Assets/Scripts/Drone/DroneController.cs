@@ -56,13 +56,13 @@ public class DroneController : MonoBehaviour
 
         rb.MoveRotation(Quaternion.Euler(tilt));
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if(speed <0.05f)
         {
-            audioSource.Play();
+            audioSource.volume = 0f;
         }
-        if (Input.GetKeyUp(KeyCode.Q))
+        else
         {
-            audioSource.Stop();
+            audioSource.volume = 1f;
         }
 
         //move up(local)

@@ -7,6 +7,8 @@ public class ForkliftMovement : MonoBehaviour
     public float forkSpeed = 1f;
     public float forkHeight = 3f;
 
+    public AudioSource ForkliftMoveAudio;
+    public AudioSource ForkliftForkAudio;
 
     private Rigidbody rb;
     private Transform fork;
@@ -33,32 +35,39 @@ public class ForkliftMovement : MonoBehaviour
 
     void HandleMove()
     {
+        ForkliftMoveAudio.volume = 0f;
         Vector3 linearMovement = Vector3.zero;
         if (Input.GetKey(KeyCode.W))
         {
+            ForkliftMoveAudio.volume = 0.7f;
             linearMovement = transform.forward;
         }
         else if (Input.GetKey(KeyCode.S))
         {
+            ForkliftMoveAudio.volume = 0.7f;
             linearMovement = -transform.forward;
         }
 
         float rotation = 0;
         if (Input.GetKey(KeyCode.D))
         {
+            ForkliftMoveAudio.volume = 0.7f;
             rotation = turningSpeed;
         }
         else if (Input.GetKey(KeyCode.A))
         {
+            ForkliftMoveAudio.volume = 0.7f;
             rotation = -turningSpeed;
         }
 
+        ForkliftForkAudio.volume = 0f;
         float forkMovement = 0;
         if (Input.GetKey(KeyCode.Q))
         {
             if (currentHeight < forkHeight)
             {
                 forkMovement = 1;
+                ForkliftForkAudio.volume = 1.0f;
                 if(currentHeight <= 0.1)
                 {
                     if (Physics.Raycast(fork.position, Vector3.up, out var collision, 1))
@@ -74,6 +83,7 @@ public class ForkliftMovement : MonoBehaviour
         {
             if (currentHeight > 0)
             {
+                ForkliftForkAudio.volume = 1.0f;
                 forkMovement = -1;
 
             }
